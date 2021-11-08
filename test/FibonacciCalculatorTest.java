@@ -81,4 +81,24 @@ public class FibonacciCalculatorTest {
         System.out.printf("Execution time for %d n-th fibonacci number calculations was %d ms", fibAmount, executionTime);
     }
 
+    @Test
+    @Timeout(30)
+    void fibonacciIterativeCacheTest() {
+        //Random number between Boundaries
+        int randomNumber;
+        //Variable to store current fibonacci number
+        BigInteger fibonacci;
+        //Variable for execution time measurements
+        long executionTime = 0;
+        for (int i = 0; i < fibAmount; i++) {
+            randomNumber = ThreadLocalRandom.current().nextInt(minFib, maxFib);
+            long start = System.currentTimeMillis();
+            fibonacci = fibonacciCalculator.fibonacci(randomNumber, CalculationMode.ITERATIVECACHE);
+            long end = System.currentTimeMillis();
+            executionTime += end - start;
+            System.out.printf("Fibonacci number for %d is %d%n", randomNumber, fibonacci);
+        }
+        System.out.printf("Execution time for %d n-th fibonacci number calculations was %d ms", fibAmount, executionTime);
+    }
+
 }
