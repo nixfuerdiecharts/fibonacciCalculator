@@ -9,6 +9,29 @@ import java.math.BigInteger;
  */
 public class FibonacciCalculator {
     /**
+     * Constructor
+     */
+    public FibonacciCalculator() {
+
+    }
+
+    /**
+     * Entry point for fibonacci calculation
+     *
+     * @param nthFibNumber    nth number to calculate the corresponding fibonacci number
+     * @param calculationMode Determines the mode of calculation for fibonacci numbers
+     * @return Corresponding fibonacci number for the given parameter
+     * @see CalculationMode
+     */
+    public BigInteger fibonacci(int nthFibNumber, CalculationMode calculationMode) {
+
+        //Determine which calculation mode is chosen
+        return switch (calculationMode) {
+            case RECURSIVE -> fibonacciRecursive(nthFibNumber);
+        };
+    }
+
+    /**
      * Calculation for nth fibonacci number with recursion
      *
      * @param nthFibNumber nth number to calculate the corresponding fibonacci number
