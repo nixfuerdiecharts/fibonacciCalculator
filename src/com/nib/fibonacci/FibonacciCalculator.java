@@ -24,6 +24,12 @@ public class FibonacciCalculator {
      * @see CalculationMode
      */
     public BigInteger fibonacci(int nthFibNumber, CalculationMode calculationMode) {
+        // Check for illegal argument
+        if (nthFibNumber < 0) {
+            //Given argument is illegal for fibonacci algorithm
+            //Also ensure that the argument is >=0 in methods for different calculation modes
+            throw new IllegalArgumentException("Illegal Argument in recursive fibonacci calculation. Argument can only be 0 or bigger");
+        }
 
         //Determine which calculation mode is chosen
         return switch (calculationMode) {
@@ -48,11 +54,8 @@ public class FibonacciCalculator {
             result = BigInteger.ZERO;
         } else if (nthFibNumber == 1) {
             result = BigInteger.ONE;
-        } else if (nthFibNumber >= 2) {
-            result = fibonacciRecursive(nthFibNumber - 1).add(fibonacciRecursive(nthFibNumber - 2));
         } else {
-            //Given argument is illegal for fibonacci algorithm
-            throw new IllegalArgumentException("Illegal Argument in recursive fibonacci calculation. Argument can only be 0 or bigger");
+            result = fibonacciRecursive(nthFibNumber - 1).add(fibonacciRecursive(nthFibNumber - 2));
         }
 
         return result;
