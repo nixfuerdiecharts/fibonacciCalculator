@@ -42,7 +42,7 @@ public class FibonacciCalculator {
         return switch (calculationMode) {
             case RECURSIVE -> fibonacciRecursive(nthFibNumber);
             case RECURSIVECACHE -> fibonacciRecursiveWithCache(nthFibNumber);
-            case ITERATIVE -> null;
+            case ITERATIVE -> fibonacciIterative(nthFibNumber);
             case ITERATIVECACHE -> null;
         };
     }
@@ -96,6 +96,36 @@ public class FibonacciCalculator {
         } else {
             //Already in cache
             result = this.getCache()[nthFibNumber];
+        }
+
+        return result;
+    }
+
+    /**
+     * Calculation for nth fibonacci number with iteration
+     *
+     * @param nthFibNumber nth number to calculate the corresponding fibonacci number
+     * @return Corresponding fibonacci number for the given parameter
+     */
+    private BigInteger fibonacciIterative(int nthFibNumber) {
+        //Helper Variable for n-1-th fibonacci number
+        BigInteger fibNMO = BigInteger.ONE;
+        //Helper Variable for n-2-th fibonacci number
+        BigInteger fibNMT = BigInteger.ZERO;
+        //Variable to store the corresponding fibonacci number for given parameter
+        BigInteger result = fibNMT;
+
+        // for n=[0;1] is fibonacci=n
+        if(nthFibNumber <=1) {
+            result = BigInteger.valueOf(nthFibNumber);
+        }
+
+        for (int i = 2; i <= nthFibNumber; i++) {
+            //calculate current fibonacci number with n-1 + n-2
+            result = fibNMO.add(fibNMT);
+            //set helpers for next iteration
+            fibNMT = fibNMO;
+            fibNMO = result;
         }
 
         return result;
