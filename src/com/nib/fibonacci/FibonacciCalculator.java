@@ -28,6 +28,9 @@ public class FibonacciCalculator {
         //Determine which calculation mode is chosen
         return switch (calculationMode) {
             case RECURSIVE -> fibonacciRecursive(nthFibNumber);
+            case RECURSIVECACHE -> null;
+            case ITERATIVE -> null;
+            case ITERATIVECACHE -> null;
         };
     }
 
