@@ -43,7 +43,7 @@ public class FibonacciCalculator {
             case RECURSIVE -> fibonacciRecursive(nthFibNumber);
             case RECURSIVECACHE -> fibonacciRecursiveWithCache(nthFibNumber);
             case ITERATIVE -> fibonacciIterative(nthFibNumber);
-            case ITERATIVECACHE -> null;
+            case ITERATIVECACHE -> fibonacciIterativeWithCache(nthFibNumber);
         };
     }
 
@@ -87,7 +87,7 @@ public class FibonacciCalculator {
                 result = BigInteger.ZERO;
             } else if (nthFibNumber == 1) {
                 result = BigInteger.ONE;
-            } else  {
+            } else {
                 // nth number must be bigger than 1 here
                 result = fibonacciRecursiveWithCache(nthFibNumber - 1).add(fibonacciRecursive(nthFibNumber - 2));
                 //Save in cache so same fibonacci number does not have to be calculated more than one time
@@ -116,7 +116,7 @@ public class FibonacciCalculator {
         BigInteger result = fibNMT;
 
         // for n=[0;1] is fibonacci=n
-        if(nthFibNumber <=1) {
+        if (nthFibNumber <= 1) {
             result = BigInteger.valueOf(nthFibNumber);
         }
 
@@ -126,6 +126,25 @@ public class FibonacciCalculator {
             //set helpers for next iteration
             fibNMT = fibNMO;
             fibNMO = result;
+
+            // set cache for iterative with cache calculation mode
+            this.setCache(i, result);
+        }
+
+        return result;
+    }
+
+    /**
+     * Calculation for nth fibonacci number with iteration and cache
+     *
+     * @param nthFibNumber nth number to calculate the corresponding fibonacci number
+     * @return Corresponding fibonacci number for the given parameter
+     */
+    private BigInteger fibonacciIterativeWithCache(int nthFibNumber) {
+        BigInteger result = this.getCache()[nthFibNumber];
+
+        if (result == null) {
+            result = fibonacciIterative(nthFibNumber);
         }
 
         return result;
