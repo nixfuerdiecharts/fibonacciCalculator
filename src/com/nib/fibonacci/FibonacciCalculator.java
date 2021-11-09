@@ -30,7 +30,7 @@ public class FibonacciCalculator {
      * @return Corresponding fibonacci number for the given parameter
      * @see CalculationMode
      */
-    public BigInteger fibonacci(int nthFibNumber, CalculationMode calculationMode) {
+    public BigInteger calculate(int nthFibNumber, CalculationMode calculationMode) {
         // Check for illegal argument
         if (nthFibNumber < 0) {
             //Given argument is illegal for fibonacci algorithm

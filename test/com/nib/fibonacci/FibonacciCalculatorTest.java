@@ -1,5 +1,5 @@
-import com.nib.fibonacci.CalculationMode;
-import com.nib.fibonacci.FibonacciCalculator;
+package com.nib.fibonacci;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
@@ -33,7 +33,7 @@ public class FibonacciCalculatorTest {
         for (int i = 0; i < fibAmount; i++) {
             randomNumber = ThreadLocalRandom.current().nextInt(minFib, maxFib);
             long start = System.currentTimeMillis();
-            fibonacci = fibonacciCalculator.fibonacci(randomNumber, CalculationMode.RECURSIVE);
+            fibonacci = fibonacciCalculator.calculate(randomNumber, CalculationMode.RECURSIVE);
             long end = System.currentTimeMillis();
             executionTime += end - start;
             System.out.printf("Fibonacci number for %d is %d%n", randomNumber, fibonacci);
@@ -53,7 +53,7 @@ public class FibonacciCalculatorTest {
         for (int i = 0; i < fibAmount; i++) {
             randomNumber = ThreadLocalRandom.current().nextInt(minFib, maxFib);
             long start = System.currentTimeMillis();
-            fibonacci = fibonacciCalculator.fibonacci(randomNumber, CalculationMode.RECURSIVECACHE);
+            fibonacci = fibonacciCalculator.calculate(randomNumber, CalculationMode.RECURSIVECACHE);
             long end = System.currentTimeMillis();
             executionTime += end - start;
             System.out.printf("Fibonacci number for %d is %d%n", randomNumber, fibonacci);
@@ -73,7 +73,7 @@ public class FibonacciCalculatorTest {
         for (int i = 0; i < fibAmount; i++) {
             randomNumber = ThreadLocalRandom.current().nextInt(minFib, maxFib);
             long start = System.currentTimeMillis();
-            fibonacci = fibonacciCalculator.fibonacci(randomNumber, CalculationMode.ITERATIVE);
+            fibonacci = fibonacciCalculator.calculate(randomNumber, CalculationMode.ITERATIVE);
             long end = System.currentTimeMillis();
             executionTime += end - start;
             System.out.printf("Fibonacci number for %d is %d%n", randomNumber, fibonacci);
@@ -93,7 +93,7 @@ public class FibonacciCalculatorTest {
         for (int i = 0; i < fibAmount; i++) {
             randomNumber = ThreadLocalRandom.current().nextInt(minFib, maxFib);
             long start = System.currentTimeMillis();
-            fibonacci = fibonacciCalculator.fibonacci(randomNumber, CalculationMode.ITERATIVECACHE);
+            fibonacci = fibonacciCalculator.calculate(randomNumber, CalculationMode.ITERATIVECACHE);
             long end = System.currentTimeMillis();
             executionTime += end - start;
             System.out.printf("Fibonacci number for %d is %d%n", randomNumber, fibonacci);
